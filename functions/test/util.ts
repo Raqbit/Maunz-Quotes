@@ -1,28 +1,11 @@
 import {suite as Suite, test as Test} from 'mocha-typescript';
 import {describe} from 'mocha';
-import {isValidGuildID, isValidPageNum} from '../src/util/validation';
 import {expect} from 'chai';
-import SuccessResponse from "../src/util/success";
-import {ErrorResponse} from "../src/util/error";
+import SuccessResponse from "../src/util/response/success";
+import {ErrorResponse} from "../src/util/response/error";
 
 
 describe('Utilities', () => {
-    @Suite
-    class Validation {
-        @Test('should validate if value is a valid guild ID')
-        test_isValidGuildID() {
-            expect(isValidGuildID(90000000000000)).to.be.true;
-            expect(isValidGuildID('dfsdfsdf')).to.be.false;
-            expect(isValidGuildID('90000000000000')).to.be.true;
-        }
-
-        @Test('should validate if value is a valid page number')
-        test_isValidPageNum() {
-            expect(isValidPageNum(0)).to.be.true;
-            expect(isValidPageNum(-20)).to.be.false;
-        }
-    }
-
     @Suite
     class Responses {
         @Test('should create a response with a status of 200')

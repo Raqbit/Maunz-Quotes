@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as functions from 'firebase-functions';
-import SuccessResponse from "./success";
+import SuccessResponse from "./response/success";
 
 export default functions.https.onRequest((req: express.Request, res: express.Response,) => {
     const response = new SuccessResponse('Pong!', {time: Date.now()});

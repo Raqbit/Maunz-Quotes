@@ -3,6 +3,9 @@ export class Quote {
   public title: string;
   public submitter: string;
   public quote: string;
-  public timestamp: Date;
+  public timestamp: number;
   public approved: boolean;
+
+  constructor(title, quote, submiter) {
+  }
 }
