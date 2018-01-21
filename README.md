@@ -1,6 +1,16 @@
 # MaunzQuotes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.5.
+Web App which displays the quotes of a specific Discord guild from the Maunz-Quotes service.
+
+
+## TODO:
+* Create quote list page
+* Create quote view page
+  * Admin users should be able to edit/delete quotes
+* Create Admin page for Discord guild admins
+  * Login via twitter or discord?
+  * Approve/Disapprove/Edit & Approve quotes
+  * Delete all quotes
 
 ## Development server
 
