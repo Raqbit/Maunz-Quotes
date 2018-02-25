@@ -11,7 +11,7 @@ import {
   getQuoteCountValidation,
   getQuotesValidation
 } from '../util/validation/quote-validation';
-import {Quote} from '../../../src/app/core/models/quote';
+import Quote from '../util/model/quote';
 
 const PAGE_SIZE = 3;
 
@@ -122,7 +122,6 @@ class Quotes extends HTTPRoute {
       });
   }
 
-  //TODO: This times out...
   /**
    * Add a quote to the database
    * @param req - Express Request
@@ -138,7 +137,12 @@ class Quotes extends HTTPRoute {
 
     const quotesRef = firestore.collection(`guilds/${guild}/quotes`);
 
-    const newQuote = new Quote(title, quote, submitter);
+    // Firebase doesn't accept "new Quote" >.>
+    const newQuote = <Quote> {
+      title,
+      quote,
+      submitter
+    };
 
     newQuote.approved = false;
     newQuote.timestamp = Date.now();
