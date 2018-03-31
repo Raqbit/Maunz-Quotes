@@ -1,5 +1,6 @@
 {
   "projects": {
-    "maunz-quotes": "maunz-quotes"
+    "maunz-quotes": "maunz-quotes",
+    "default": "maunz-quotes"
   }
 }

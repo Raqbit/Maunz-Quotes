@@ -12,6 +12,7 @@ import {
   getQuotesValidation
 } from '../util/validation/quote-validation';
 import Quote from '../util/model/quote';
+import {CollectionReference} from '@google-cloud/firestore';
 
 const PAGE_SIZE = 3;
 
@@ -19,17 +20,18 @@ class Quotes extends HTTPRoute {
 
   constructor() {
     super();
-    this.router.get('/getQuotes', getQuotesValidation(),
+    this.router.get('/', getQuotesValidation(),
       (req: express.Request, res: express.Response) => this.getQuotes(req, res));
 
-    this.router.get('/getQuoteCount', getQuoteCountValidation(),
+    this.router.post('/', addQuoteValidation(),
+      (req: express.Request, res: express.Response) => this.addQuote(req, res));
+
+    this.router.get('/quotes/count', getQuoteCountValidation(),
       (req: express.Request, res: express.Response) => this.getQuoteCount(req, res));
 
-    this.router.get('/getPageCount', getPageCountValidation(),
+    this.router.get('/quotes/pagecount', getPageCountValidation(),
       (req: express.Request, res: express.Response) => this.getPageCount(req, res));
 
-    this.router.post('/addQuote', addQuoteValidation(),
-      (req: express.Request, res: express.Response) => this.addQuote(req, res));
   }
 
   /**
@@ -41,7 +43,7 @@ class Quotes extends HTTPRoute {
     const guild = req.query['guild'];
     const page = req.query['page'];
 
-    const quotesRef = firestore.collection(`guilds/${guild}/quotes`);
+    const quotesRef: CollectionReference = firestore.collection(`guilds/${guild}/quotes`);
 
     quotesRef
       .where('approved', '==', true)
@@ -159,5 +161,6 @@ class Quotes extends HTTPRoute {
       });
   }
 }
+
 
 export default Quotes;
